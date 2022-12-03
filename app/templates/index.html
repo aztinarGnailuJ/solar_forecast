@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        
+        <title>Solar Forecast</title>
+        <link rel="shortcut icon" href="{{url_for('public', path='/favicon.ico')}}">
+        <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/moment@2.27.0"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@0.1.1"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment-timezone/0.5.39/moment-timezone-with-data.js"></script>
+        
+    </head>
+    <body style="margin:0;background-color:lightlightgrey;">
+        
+        
+
+        <div style="height: 100%; width:100%;display:flex;flex-direction: column; flex-wrap:wrap; align-items: center; align-content: center; justify-content: center;">
+            <div style="width:90%;margin-top:3%;">
+                <canvas style="font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;" id="forecast"></canvas>
+            </div>
+            <!-- <div style="display:flex; margin-top:1%;width:100%; align-items: center; align-content: center; justify-content: center;">
+                <input type="range" min="0" max="3" value="0">
+            </div> -->
+            <div class=prod>
+                Produktion heute noch mindestens <a class=number>{{expected10[0]}}</a>kWh, eher <a class=number>{{expected[0]}}</a>kWh, maximal aber <a class=number>{{expected90[0]}}</a>kWh.
+            </div>
+            <div class=prod>
+                Produktion morgen mindestens <a class=number>{{expected10[1]}}</a>kWh, eher <a class=number>{{expected[1]}}</a>kWh, maximal aber <a class=number>{{expected90[1]}}</a>kWh.
+            </div>
+        </div>
+        
+        
+        
+    </body>
+    <script>
+    const PVEst = {{ PVEst|safe }};
+    const PVEst10 = {{ PVEst10|safe }};
+    const PVEst90 = {{ PVEst90|safe }};
+    const PeriodEnd = {{ periodend|safe }};
+    </script>
+    <script src="{{ url_for('scripts', path='/forecast.js') }}"></script>
+</html>
